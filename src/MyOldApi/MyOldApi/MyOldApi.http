@@ -10,7 +10,7 @@ Accept: application/json
 
 ###
 
-GET {{MyOldApi_HostAddress}}/teams/1/players/27
+GET {{MyOldApi_HostAddress}}/teams/2/players/12
 Accept: application/json
 
 ###

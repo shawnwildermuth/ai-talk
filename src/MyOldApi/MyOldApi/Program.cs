@@ -20,6 +20,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
   var db = scope.ServiceProvider.GetRequiredService<WorldCupContext>();
+  db.Database.EnsureDeleted();
   db.Database.EnsureCreated();
 }
 

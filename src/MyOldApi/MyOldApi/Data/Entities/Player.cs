@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace MyOldApi.Data.Entities;
 
 public class Player
@@ -10,6 +12,7 @@ public class Player
   // World Cup-specific profile fields
   public DateOnly DateOfBirth { get; set; }
   public string Nationality { get; set; } = string.Empty;
+  [RegularExpression("^[A-Z]{3}$")]
   public string FifaCountryCode { get; set; } = string.Empty; // e.g. "ARG", "FRA"
 
   public string Position { get; set; } = string.Empty;
