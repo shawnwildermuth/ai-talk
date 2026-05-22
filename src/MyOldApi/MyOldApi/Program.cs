@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MyOldApi.Controllers;
 using MyOldApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,8 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<WorldCupContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("WorldCupConnection")));
 
-builder.Services.AddControllers().AddJsonOptions(options =>
-    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
+builder.Services.ConfigureHttpJsonOptions(options =>
+    options.SerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi("MyOldApi");
@@ -32,8 +33,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
-app.MapControllers();
+app.MapTeamsEndpoints();
+app.MapPlayersEndpoints();
 
 app.Run();

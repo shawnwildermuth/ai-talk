@@ -1,14 +1,18 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyOldApi.Data;
+
 namespace MyOldApi.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class TeamsController(WorldCupContext context) : ControllerBase
+public static class TeamsController
 {
-  [HttpGet(Name = "GetAllTeams")]
-  public async Task<IResult> Get()
+  public static IEndpointRouteBuilder MapTeamsEndpoints(this IEndpointRouteBuilder app)
+  {
+    app.MapGet("/teams", GetAllTeams).WithName("GetAllTeams");
+    app.MapGet("/teams/{id:int}", GetTeam).WithName("GetTeam");
+    return app;
+  }
+
+  public static async Task<IResult> GetAllTeams(WorldCupContext context)
   {
     var results = await context.Teams.ToListAsync();
     if (!results.Any())
@@ -19,8 +23,7 @@ public class TeamsController(WorldCupContext context) : ControllerBase
     return Results.Ok(results);
   }
 
-  [HttpGet("{id:int}", Name = "GetTeam")]
-  public async Task<IResult> Get(int id)
+  public static async Task<IResult> GetTeam(WorldCupContext context, int id)
   {
     var result = await context.Teams.FindAsync(id);
     if (result is null)

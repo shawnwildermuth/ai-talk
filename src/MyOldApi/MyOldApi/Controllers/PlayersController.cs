@@ -1,15 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.EntityFrameworkCore;
 using MyOldApi.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace MyOldApi.Controllers;
 
-[ApiController]
-[Route("teams/{teamId}/[controller]")]
-public class PlayersController(WorldCupContext context) : ControllerBase
+public static class PlayersController
 {
-  [HttpGet()]
-  public async Task<IResult> GetPlayers(int teamId)
+  public static IEndpointRouteBuilder MapPlayersEndpoints(this IEndpointRouteBuilder app)
+  {
+    app.MapGet("/teams/{teamId:int}/players", GetPlayers);
+    app.MapGet("/teams/{teamId:int}/players/{id:int}", GetPlayer);
+    return app;
+  }
+
+  public static async Task<IResult> GetPlayers(WorldCupContext context, int teamId)
   {
     var results = await context.Players.Where(p => p.TeamId == teamId).ToListAsync();
     if (!results.Any())
@@ -18,11 +21,9 @@ public class PlayersController(WorldCupContext context) : ControllerBase
     }
 
     return Results.Ok(results);
-
   }
 
-  [HttpGet("{id:int}")]
-  public async Task<IResult> GetPlayer(int teamId, int id)
+  public static async Task<IResult> GetPlayer(WorldCupContext context, int teamId, int id)
   {
     var result = await context.Players.Where(p => p.TeamId == teamId && p.JerseyNumber == id).FirstOrDefaultAsync();
     if (result is null)
@@ -31,6 +32,5 @@ public class PlayersController(WorldCupContext context) : ControllerBase
     }
 
     return Results.Ok(result);
-
   }
 }
