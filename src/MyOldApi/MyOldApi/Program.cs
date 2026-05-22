@@ -39,3 +39,5 @@ app.MapTeamsEndpoints();
 app.MapPlayersEndpoints();
 
 app.Run();
+
+public partial class Program;
