@@ -1,0 +1,22 @@
+## .NET
+bin/
+obj/
+*.user
+.vs/
+*.suo
+*.userprefs
+
+## EF migrations output (keep migrations, ignore db files)
+*.db
+*.db-shm
+*.db-wal
+
+## Node / Vue frontend
+SnackBarPOS.Frontend/node_modules/
+SnackBarPOS.Frontend/dist/
+SnackBarPOS.Frontend/.vite/
+
+## Environment
+.env
+.env.local
+.env.*.local

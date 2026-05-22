@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.5171056">
+  <PropertyGroup>
+    <StartupCommand>npm run dev</StartupCommand>
+    <JavaScriptTestFramework>None</JavaScriptTestFramework>
+    <BuildCommand>npm run build</BuildCommand>
+    <CleanCommand>npm run clean</CleanCommand>
+    <!-- The port for the dev server to listen on -->
+    <StartupCommandArguments></StartupCommandArguments>
+  </PropertyGroup>
+</Project>

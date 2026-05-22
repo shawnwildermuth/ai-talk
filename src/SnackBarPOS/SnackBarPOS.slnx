@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="SnackBarPOS.Api/SnackBarPOS.Api.csproj" />
+  <Project Path="SnackBarPOS.Frontend/SnackBarPOS.Frontend.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>
