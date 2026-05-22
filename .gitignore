@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/src/MyApi/.vs/MyApi.slnx/DesignTimeBuild
+/src/MyApi/.vs/MyApi.slnx/FileContentIndex
+/src/MyApi/.vs/MyApi.slnx/v18
+/src/MyApi/.vs/ProjectEvaluation
