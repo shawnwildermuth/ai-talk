@@ -1,6 +1,5 @@
 using Mapster;
-using Microsoft.EntityFrameworkCore;
-using MyOldApi.Data;
+using MyOldApi.Data.Repositories;
 using MyOldApi.Models;
 
 namespace MyOldApi.Controllers;
@@ -14,9 +13,9 @@ public static class TeamsController
     return app;
   }
 
-  public static async Task<IResult> GetAllTeams(WorldCupContext context)
+  public static async Task<IResult> GetAllTeams(IWorldCupRepository repository)
   {
-    var results = await context.Teams.ToListAsync();
+    var results = await repository.GetAllTeamsAsync();
     if (!results.Any())
     {
       return Results.NotFound();
@@ -26,9 +25,9 @@ public static class TeamsController
     return Results.Ok(models);
   }
 
-  public static async Task<IResult> GetTeam(WorldCupContext context, int id)
+  public static async Task<IResult> GetTeam(IWorldCupRepository repository, int id)
   {
-    var result = await context.Teams.FindAsync(id);
+    var result = await repository.GetTeamByIdAsync(id);
     if (result is null)
     {
       return Results.NotFound();

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyOldApi.Controllers;
 using MyOldApi.Data;
+using MyOldApi.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<WorldCupContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("WorldCupConnection")));
+builder.Services.AddScoped<IWorldCupRepository, WorldCupRepository>();
 
 builder.Services.ConfigureHttpJsonOptions(options =>
     options.SerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
