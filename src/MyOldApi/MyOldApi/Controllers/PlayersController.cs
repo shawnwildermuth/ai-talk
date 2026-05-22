@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
 using MyOldApi.Data;
+using MyOldApi.Models;
 
 namespace MyOldApi.Controllers;
 
@@ -20,7 +22,8 @@ public static class PlayersController
       return Results.NotFound();
     }
 
-    return Results.Ok(results);
+    var models = results.Adapt<List<PlayerModel>>();
+    return Results.Ok(models);
   }
 
   public static async Task<IResult> GetPlayer(WorldCupContext context, int teamId, int id)
@@ -31,6 +34,7 @@ public static class PlayersController
       return Results.NotFound();
     }
 
-    return Results.Ok(result);
+    var model = result.Adapt<PlayerModel>();
+    return Results.Ok(model);
   }
 }
