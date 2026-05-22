@@ -5,8 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<MlbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("MlbConnection")));
+builder.Services.AddDbContext<WorldCupContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("WorldCupConnection")));
 
 builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
@@ -19,7 +19,7 @@ var app = builder.Build();
 // Ensure the SQLite database and schema exist on startup
 using (var scope = app.Services.CreateScope())
 {
-  var db = scope.ServiceProvider.GetRequiredService<MlbContext>();
+  var db = scope.ServiceProvider.GetRequiredService<WorldCupContext>();
   db.Database.EnsureCreated();
 }
 

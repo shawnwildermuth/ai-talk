@@ -6,7 +6,7 @@ namespace MyOldApi.Controllers;
 
 [ApiController]
 [Route("teams/{teamId}/[controller]")]
-public class PlayersController(MlbContext context) : ControllerBase
+public class PlayersController(WorldCupContext context) : ControllerBase
 {
   [HttpGet()]
   public async Task<IResult> GetPlayers(int teamId)

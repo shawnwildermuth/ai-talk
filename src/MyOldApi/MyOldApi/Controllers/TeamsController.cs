@@ -5,7 +5,7 @@ namespace MyOldApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class TeamsController(MlbContext context) : ControllerBase
+public class TeamsController(WorldCupContext context) : ControllerBase
 {
   [HttpGet(Name = "GetAllTeams")]
   public async Task<IResult> Get()

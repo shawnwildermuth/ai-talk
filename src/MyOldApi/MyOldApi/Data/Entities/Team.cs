@@ -4,8 +4,11 @@ public class Team
 {
   public int Id { get; set; }
   public string Name { get; set; } = string.Empty;
-  public string City { get; set; } = string.Empty;
-  public string League { get; set; } = string.Empty;
-  public string Division { get; set; } = string.Empty;
+  public string Country { get; set; } = string.Empty;
+  public string FifaCountryCode { get; set; } = string.Empty;
+  public string Confederation { get; set; } = string.Empty;
+  public string Group { get; set; } = string.Empty;
+  public string HeadCoach { get; set; } = string.Empty;
+  public int FifaRanking { get; set; }
   public ICollection<Player> Players { get; set; } = [];
 }
